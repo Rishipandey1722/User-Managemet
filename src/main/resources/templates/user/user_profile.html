@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>User Profile</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f4f4f4;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.container {
+				width: 400px;
+				padding: 20px;
+				background-color: #fff;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				border-radius: 8px;
+			}
+
+			h2 {
+				text-align: center;
+				color: #333;
+			}
+
+			.profile-info {
+				margin-bottom: 20px;
+			}
+
+			.profile-info label {
+				font-weight: bold;
+			}
+
+			.profile-info p {
+				margin: 5px 0;
+			}
+
+			.text-left {
+				text-align: left;
+			}
+
+			.text-right {
+				text-align: right;
+			}
+
+			.logout-btn {
+				display: inline-block;
+				/* Change from block to inline-block */
+				padding: 10px 20px;
+				background-color: #007bff;
+				color: #fff;
+				text-decoration: none;
+				border-radius: 5px;
+				margin-right: 7px;
+				/* Adjust spacing between buttons */
+			}
+
+			.logout-btn:hover {
+				background-color: #0056b3;
+			}
+
+			.success-message {
+				background-color: #dff0d8;
+				color: #3c763d;
+				padding: 10px;
+				border-radius: 5px;
+				margin-bottom: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<script>
+			function cutkro() {
+				const cutMessage = document.getElementById('cut-message');
+				if (cutMessage) {
+					cutMessage.addEventListener('click', () => {
+						console.log("Clicked")
+						cutMessage.parentElement.remove(); // Remove the entire message container
+					});
+				}
+			}
+		</script>
+
+		<div class="container">
+			<!-- Success message -->
+			<div th:if="${msg}" class="success-message">
+				<span th:text="${msg}">You have successfully logged in!</span>
+				<span id="cut-message" style="cursor: pointer; float: right;" onclick="cutkro()">(cut)</span>
+			</div>
+
+			<div th:if="${successMessage}" class="success-message">
+				<strong th:text="${successMessage}"></strong>
+			</div>
+
+			<h2>User Profile</h2>
+
+			<div class="profile-info">
+				<label>Username/Email:</label>
+				<p th:text="${user.username}"></p>
+			</div>
+
+			<div class="profile-info">
+				<label>Role:</label>
+				<p th:text="${user.role}"></p>
+			</div>
+
+			<div class="profile-info">
+				<label>Qualification:</label>
+				<p th:text="${user.qualification}"></p>
+			</div>
+
+			<div class="profile-info">
+				<label>Address:</label>
+				<p th:text="${user.address}"></p>
+			</div>
+
+			<!-- Add more user details as needed -->
+
+			<div class="text-left">
+				<a href="/logout" class="logout-btn">Logout</a>
+				<a href="/user/edit/profile" class="logout-btn">Edit Profile</a>
+				<a href="/user/resetPassword" class="logout-btn">Reset Password</a>
+				<!-- Moved Reset Password button -->
+			</div>
+		</div>
+
+	</body>
+
+</html>
